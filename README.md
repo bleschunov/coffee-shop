@@ -1,70 +1,172 @@
-# Getting Started with Create React App
+## Atoms
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Title
 
-In the project directory, you can run:
+Font-family is `inherit`, default font-size is `inherit`
 
-### `npm start`
+Prop | Required | Description
+--- | --- | ---
+as | true | Any of `h1, h2, h3, h4, h5, h6`
+size | true | CSS value of font-size
+color | true | CSS value of color
+className | false | Any custom classes
+children | false | Text content
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```javascript
+    <Title as='h1' size='16px' color='white'>Our Coffee</Title>
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Paragraph
 
-### `npm test`
+Font-family is `inherit`, default font-size is `inherit`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Prop | Required | Description
+--- | --- | ---
+color | true | CSS value of color
+fontSize | false | CSS value of font-size
+className | false | Any custom classes
+children | false | Text content
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+    <Paragraph color="white" fontSize="18px">Lorem ipsum...</Paragraph>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Nav
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Prop | Required | Description
+--- | --- | ---
+navItems | true | List of objects representing nav items
+color | true | Color of text and icon
+className | false | Any custom classes
 
-### `npm run eject`
+```javascript
+    <Nav navItems=[{
+        title: 'Contacts',
+        src: 'http://127.0.0.1/contacts.html',
+        key: '0'
+    }] color="white" />
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Img
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Prop | Required | Description
+--- | --- | ---
+src | true | Link to image
+alt | false | Alt attribute for img tag
+className | false | Any custom classes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```javascript
+    <Img src="./landscape.png" alt="Landscape with lake and forest" />
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Icon
 
-## Learn More
+Prop | Required | Description
+--- | --- | ---
+name | true | Name of icon from `sprite.svg`
+color | true | Color of icon
+className | false | Any custom classes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+    <Icon name="divider" color="white" />
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Button
 
-### Code Splitting
+Prop | Required | Description
+--- | --- | ---
+children | false | Button label
+className | false | Any custom classes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```javascript
+    <Button>Click me</Button>
+```
 
-### Analyzing the Bundle Size
+### Background
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Div container with background-image
 
-### Making a Progressive Web App
+Prop | Required | Description
+--- | --- | ---
+img | true | Link to background image
+height | true | CSS of height value
+children | false | Any children of div container
+className | false | Any custom classes 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```javascript
+    <Background img="./bgImg.png" height="600px">
+        <Button>Click to me</Button>
+    </Background>
+```
 
-### Advanced Configuration
+## Molecules
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Card
 
-### Deployment
+Prop | Required | Description
+--- | --- | ---
+img | true | Card image
+title | true | Card title
+country | true | 
+price | true |
+isShadow | false | Enables shadow under a card
+alt | false | Alt attribute for img tag
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```javascript
+    <Card 
+        img="./brazilianCoffee.png"
+        alt="brazilian coffee"
+        title="The best coffee from Brazil"
+        country="Brazil"
+        price="10.99"
+        isShadow={true} />
+```
 
-### `npm run build` fails to minify
+### Filters
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Prop | Required | Description
+--- | --- | ---
+onChangeFilters | true | Function
+filters | true | An object of relevant filters 
+className | false | Any custom classes
+
+```javascript
+    <Filters onChangeFilters={onChangeFilters} 
+             filters={{
+                 country: ['Brazil'],
+                 search: '1 kg'
+             }} />
+```
+
+### Catalogue 
+
+Prop | Required | Description
+--- | --- | ---
+cards | true | Array of objects representing cards
+filters | true | An object of relevant filters
+className | false | Any custom classes
+
+```javascript
+    <Filters cards={[
+                {
+                    img: './brazilianCoffee.png',
+                    title: 'Brazilian Coffee',
+                    country: 'Brazil',
+                    price: '10.99',
+                    key: '0'
+                },
+             ]}
+             filters={{
+                 country: ['Brazil'],
+                 search: '1 kg'
+             }} />
+```
+
+## Organs
+
+### About
+
+
+
